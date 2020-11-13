@@ -18,7 +18,7 @@ function App() {
   const { loading, error } = useQuery(PRODUCTS(defaultCurrency.code), { onCompleted: (data) => setProducts(data.products) });
 
   useEffect(() => {
-    // Update 
+    // Update cart price when the new products that is returned
     let newCart = cart ? cart.map(cartItem => {
       const existingProductItemInCart = products.find(product => cartItem.id === product.id);
       if (existingProductItemInCart) cartItem.price = existingProductItemInCart.price;
@@ -28,9 +28,12 @@ function App() {
   }, [products]);
 
   const handleAddToCart = (product: ProductProp) => {
+    // here I copy the cart array and get the selected product item only
     let cartCopy = [...cart];
     const existingCart: ProductProp | undefined = cart?.filter(item => item.id === product.id)[0];
 
+    // if the item already exists in the cart I increase the quantity only
+    // else add to cart directly.
     if (existingCart) {
       existingCart.quantity = existingCart.quantity + 1 || 1;
       cartCopy.map(obj => [existingCart].find(item => item.id === obj.id) || obj);
