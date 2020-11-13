@@ -1,6 +1,6 @@
 # Pangaea Test - Lumin re-create
 
-Live demo [Live demo](https://pangaea-micah.vercel.app/).
+## Live demo [Live demo](https://pangaea-micah.vercel.app/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
