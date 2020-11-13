@@ -62,8 +62,16 @@
     padding-right: 15px;
 }
 
+.cart-item .product-image img {
+    overflow: hidden;
+    height: 80px;
+    width: auto;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
 .cart-item .product-description .quantity-selector {
-    border: .5px solid #bcbcbc;
+    border: 0.5px solid #bcbcbc;
     padding: 7px;
     width: 76px;
     display: flex;
@@ -76,7 +84,7 @@
     padding: 0 10px;
     width: inherit;
     font-size: 15px;
-    letter-spacing: .03px;
+    letter-spacing: 0.03px;
 }
 
 .cart-item .product-description .quantity .counter-action {

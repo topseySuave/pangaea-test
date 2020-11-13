@@ -35,7 +35,7 @@
   font-size: 20px;
   font-family: "Lora", san-serif;
   padding: 0 15px;
-  max-height: 300px;
+  max-height: 180px;
   object-fit: contain;
 }
 
@@ -53,6 +53,10 @@
 .action-bttn {
   background-color: #4b5548;
   color: #fcfcf9;
+}
+
+.action-bttn:hover {
+  background-color: #2B2E2B;
 }
 
 .action-btn {
@@ -131,8 +135,10 @@ h5.cart-title {
 .cart-body {
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 20px;
   flex: 1;
   overflow-y: auto;
+  text-align: center;
 }
 
 .cart-footer {
@@ -140,10 +146,12 @@ h5.cart-title {
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1;
   padding: 0 20px 20px;
-  position: absolute;
+  background-color: #f2f2ef;
+  /* position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
+  max-width: 100%;
 }
 
 .cart-subtotal {

@@ -1,24 +1,42 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
 interface ProductProps {
-    onAddtoCart: () => void;
+	onAddtoCart: () => void;
+	currency: string;
+	product: ProductProp;
 }
 
-const Product: React.FC<ProductProps> = ({ onAddtoCart }) => {
-    return (
-        <div className="single-product">
-            <div className="product-image-container">
-                <a href="https://luminskin.myshopify.com/products/dark-circle-defense/">
-                    <img className="product-image" src="https://cdn.shopify.com/s/files/1/0044/1237/5107/files/DCD_MensHealth.png?v=1595203208" alt="" />
-                </a>
-            </div>
-            <a href="https://luminskin.myshopify.com/products/dark-circle-defense/"><h3 className="product-title">Dark Circle Defense </h3> </a>
-            <p className="single-product-price">From <span data-product-code="14">€20.00</span></p>
-            <div className="action-buttons">
-                <button onClick={() => onAddtoCart()} className="action-btn action-bttn add-complete-skincare-set-to-cart">Add to Cart</button>
-            </div>
-        </div>
-    );
+export interface ProductProp {
+	id: number;
+	title: string;
+	image_url: string;
+	price: number;
+	quantity: any;
+}
+
+const Product: React.FC<ProductProps> = ({ currency, onAddtoCart, product }) => {
+	return (
+		<div className="single-product">
+			<div className="product-image-container">
+				<a>
+					<img className="product-image" src={product.image_url} alt={product.title} />
+				</a>
+			</div>
+			<a>
+				<h3 className="product-title">{product.title}</h3>
+			</a>
+			<p className="single-product-price">From <span data-product-code={product.id}>{currency}{product.price}.00</span></p>
+			<div className="action-buttons">
+				<button
+					onClick={() => onAddtoCart()}
+					className="action-btn action-bttn add-complete-skincare-set-to-cart"
+				>
+					Add to Cart
+                </button>
+			</div>
+		</div>
+	);
 };
 
 export default Product;

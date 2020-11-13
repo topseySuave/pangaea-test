@@ -1,38 +1,34 @@
 import React from 'react';
+import { ProductProp } from './Product';
 import './style.css';
 
-const CartItem = () => (
-    <div className="cart-item-list">
-        <div className="cart-item">
-            <div className="product-description">
-                <span className="remove-product" style={{ cursor: 'pointer' }}>x</span>
-                <h6>Up Top Management Set</h6>
-                <div>
-                    <span className="ff-bau-medium">MADE FOR:</span> Celestial Warehouse
-                    </div>
-                <div>25-34 | Combination</div>
-                <div className="">
-                    <span className="d-block">Two Month <span> supply shipped every two months</span>.
-                        </span>
-                    <span>Cancel or change frequency anytime</span>
-                </div>
-                <div className="d-none">
-                    <span>One time purchase of</span> Two Month <span>supply</span>.
-                    </div>
-                <div className="quantity">
-                    <div className="quantity-selector">
-                        <span className="counter-action decrement">-</span>
-                        <span className="counter-number counter"> 1 </span>
-                        <span className="counter-action increment">+</span>
-                    </div>
-                    <div className="price">€48.44</div>
-                </div>
-            </div>
-            <div className="product-image">
-                <img src="https://cdn.shopify.com/s/files/1/2960/5204/files/Up_Top_Management_2_Month_1_97bf84a7-3e4d-456e-933b-d87e01028583.png?v=1599805293" alt="Product cart img" />
-            </div>
-        </div>
-    </div>
+interface CartItemProps {
+	item: ProductProp;
+	currency: string;
+	decrement: (product: ProductProp, remove: boolean) => void;
+	increment: (product: ProductProp) => void;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ currency, item, increment, decrement }) => (
+	<div className="cart-item-list">
+		<div className="cart-item">
+			<div className="product-description">
+				<span className="remove-product" style={{ cursor: 'pointer' }} onClick={() => decrement(item, true)}>x</span>
+				<h1 className="text-base mb-8 text-left">{item.title}</h1>
+				<div className="quantity">
+					<div className="quantity-selector">
+						<span className="counter-action decrement" onClick={() => decrement(item, false)}>-</span>
+						<span className="counter-number counter">{item.quantity}</span>
+						<span className="counter-action increment" onClick={() => increment(item)}>+</span>
+					</div>
+					<div className="price">{currency}{item.price * item.quantity}.00</div>
+				</div>
+			</div>
+			<div className="product-image">
+				<img src={item.image_url} alt={item.title} />
+			</div>
+		</div>
+	</div>
 );
 
 export default CartItem;
